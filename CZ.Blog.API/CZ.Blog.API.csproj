@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="3.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CZ.Blog.EntityFrameworkCore.DbMigrations\CZ.Blog.EntityFrameworkCore.DbMigrations.csproj" />
+    <ProjectReference Include="..\CZ.Blog.HttpApi\CZ.Blog.HttpApi.csproj" />
+  </ItemGroup>
+
+
+</Project>
