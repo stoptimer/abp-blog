@@ -23,7 +23,11 @@ namespace CZ.Blog.Application.Contracts
         /// <summary>
         /// 用户ID
         /// </summary>
-        public int Author { get; set; }
+        public int UserId { get; set; }
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string Author { get; set; }
         /// <summary>
         /// 分类ID
         /// </summary>

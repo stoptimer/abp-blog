@@ -78,10 +78,13 @@ namespace CZ.Blog.Application.Services
         {
             ArticleByPageDto articleByPageDto = new ArticleByPageDto();
             articleByPageDto.Total = await _articleRepository.GetCountAsync();
-            await _articleRepository.GetArticles(index, size);
-            var articles = await _articleRepository.GetArticles(index, size);
-            List<ArticleDto> articleDTOs = ObjectMapper.Map<List<Article>, List<ArticleDto>>(articles);
-            articleByPageDto.ArticleDtos = articleDTOs;
+            var articleDtos = from articles in await _articleRepository.GetArticles(index, size)
+                              join users in await _userRepository.GetListAsync() on articles.UserId equals users.Id
+                              join cates in await _categoryRepository.GetListAsync() on articles.CategoryId equals cates.Id
+                              
+                              select new ArticleDto { Title = articles.Title, Id = articles.Id, Content = articles.Content, InputDate = articles.InputDate, Mdcontent = articles.Mdcontent, Category = cates, Author = users.UserName };
+
+            articleByPageDto.ArticleDtos = articleDtos.ToList();
             return articleByPageDto;
         }
     }
