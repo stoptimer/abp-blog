@@ -5,4 +5,4 @@ FROM base AS final
 WORKDIR /app
 COPY CZ.Blog.API/bin/Release/netcoreapp3.1/publish/ .
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
-ENTRYPOINT ["dotnet", "CZ.Blog.API"]
+ENTRYPOINT ["dotnet", "CZ.Blog.API.dll"]
