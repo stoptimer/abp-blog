@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZ.Blog.Application.Contrac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZ.Blog.HttpApi", "CZ.Blog.HttpApi\CZ.Blog.HttpApi.csproj", "{B96A8F95-C992-4BC5-913A-00C850074E7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CZ.Blog.EntityFrameworkCore.DbMigrations", "CZ.Blog.EntityFrameworkCore.DbMigrations\CZ.Blog.EntityFrameworkCore.DbMigrations.csproj", "{F539A257-D6AE-4F9B-8070-704EB06A7355}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZ.Blog.EntityFrameworkCore.DbMigrations", "CZ.Blog.EntityFrameworkCore.DbMigrations\CZ.Blog.EntityFrameworkCore.DbMigrations.csproj", "{F539A257-D6AE-4F9B-8070-704EB06A7355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
