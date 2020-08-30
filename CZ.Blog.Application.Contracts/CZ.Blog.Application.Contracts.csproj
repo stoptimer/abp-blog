@@ -4,12 +4,22 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>CZ.Blog.Application.Contracts.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Authorization" Version="3.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CZ.Blog.Domain\CZ.Blog.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CZ.Blog.Application.Contracts.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

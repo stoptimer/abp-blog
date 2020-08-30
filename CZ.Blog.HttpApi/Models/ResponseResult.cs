@@ -4,6 +4,9 @@ using System.Text;
 
 namespace CZ.Blog.HttpApi.Models
 {
+    /// <summary>
+    /// 响应结果实体
+    /// </summary>
     public class ResponseResult
     {
 
@@ -25,12 +28,20 @@ namespace CZ.Blog.HttpApi.Models
             Message = message;
             Code = ResponseCode.Succeed;
         }
+        /// <summary>
+        /// 异常返回
+        /// </summary>
+        /// <param name="exception"></param>
         public ResponseResult(Exception exception)
         {
             Message = exception.Message;
             Code = ResponseCode.Failed;
         }
     }
+    /// <summary>
+    /// 通用响应泛型实体
+    /// </summary>
+    /// <typeparam name="T">泛型</typeparam>
     public class ResponseResult<T> : ResponseResult
     {
         /// <summary>
@@ -40,7 +51,8 @@ namespace CZ.Blog.HttpApi.Models
         /// <summary>
         /// 响应成功
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="t">泛型</param>
+        /// <param name="message">返回信息</param>
         public ResponseResult(T t, string message = "")
         {
             Message = message;

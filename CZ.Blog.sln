@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZ.Blog.HttpApi", "CZ.Blog.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZ.Blog.EntityFrameworkCore.DbMigrations", "CZ.Blog.EntityFrameworkCore.DbMigrations\CZ.Blog.EntityFrameworkCore.DbMigrations.csproj", "{F539A257-D6AE-4F9B-8070-704EB06A7355}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CZ.Blog.Ids4.Server", "CZ.Blog.Ids4.Server\CZ.Blog.Ids4.Server.csproj", "{44C0EF26-7C60-4977-B8CD-137E33D5DFF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{F539A257-D6AE-4F9B-8070-704EB06A7355}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F539A257-D6AE-4F9B-8070-704EB06A7355}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F539A257-D6AE-4F9B-8070-704EB06A7355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44C0EF26-7C60-4977-B8CD-137E33D5DFF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C0EF26-7C60-4977-B8CD-137E33D5DFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C0EF26-7C60-4977-B8CD-137E33D5DFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C0EF26-7C60-4977-B8CD-137E33D5DFF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

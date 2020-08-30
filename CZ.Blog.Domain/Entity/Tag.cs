@@ -5,7 +5,9 @@ using Volo.Abp.Domain.Entities;
 /// </summary>
 namespace CZ.Blog.Domain.Entity
 {
-
+    /// <summary>
+    /// 标签
+    /// </summary>
     public class Tag : Entity<int>
     {
 

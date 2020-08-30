@@ -12,17 +12,27 @@ using Volo.Abp.Auditing;
 
 namespace CZ.Blog.HttpApi.Controllers
 {
+    /// <summary>
+    /// 博客控制器
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class BlogController : AbpController
     {
         private readonly IBlogService _blogService;
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="blogService"></param>
         public BlogController(IBlogService blogService)
         {
             _blogService = blogService;
         }
-
+        /// <summary>
+        /// 通过文章id获取文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ResponseResult<ArticleDto>> GetArticle(int id)
         {
@@ -39,6 +49,12 @@ namespace CZ.Blog.HttpApi.Controllers
 
 
         }
+        /// <summary>
+        /// 获取文章列表
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
         [HttpGet("{index}/{size}")]
         public async Task<ResponseResult<PageData<List<ArticleDto>>>> GetArticles(int index, int size)
         {
@@ -51,6 +67,11 @@ namespace CZ.Blog.HttpApi.Controllers
             return new ResponseResult<PageData<List<ArticleDto>>>(pageData);
 
         }
+        /// <summary>
+        /// 添加文章
+        /// </summary>
+        /// <param name="request">请求实体</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ResponseResult> SaveArticle(ArticleRequest request)
         {
@@ -66,6 +87,11 @@ namespace CZ.Blog.HttpApi.Controllers
             return new ResponseResult("提交成功");
 
         }
+        /// <summary>
+        /// 更新文章
+        /// </summary>
+        /// <param name="request">请求实体</param>
+        /// <returns></returns>
         [HttpPost("update")]
         public async Task<ResponseResult> UpdateArticle(ArticleRequest request)
         {

@@ -1,32 +1,26 @@
 ﻿using CZ.Blog.EntityFrameworkCore;
-using CZ.Blog.HttpApi;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Configuration;
-using System.IO;
-using System.Reflection;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Auditing;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
+using System.Linq;
 
-namespace CZ.Blog.API
+namespace CZ.Blog.Ids4.Server
 {
     [DependsOn(typeof(AbpAspNetCoreMvcModule),
     typeof(AbpAutofacModule),
-        typeof(CZBlogHttpApiModule),
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(CZBlogFrameworkCoreModule)
         )]
-    public class AppModule : AbpModule
+    public class AbpIds4ServerModule : AbpModule
     {
-        
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
@@ -35,36 +29,17 @@ namespace CZ.Blog.API
             {
                 options.IsEnabledForGetRequests = true;
                 options.EntityHistorySelectors.AddAllEntities();
-                options.ApplicationName = "BlogAPI";
+                options.ApplicationName = "IdentityService";
             });
-            context.Services.AddAuthentication("Bearer")
-            .AddJwtBearer("Bearer", options =>
-            {
-                options.Authority = "http://localhost:5000";
+            context.Services.AddIdentityServer()
+                       .AddDeveloperSigningCredential()
+                        .AddInMemoryApiScopes(Config.ApiScopes)
+                        .AddInMemoryClients(Config.Clients);
 
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateAudience = false
-                };
-            });
-            context.Services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog API", Version = "v1" });
 
-                var xmlapipath = Path.Combine(AppContext.BaseDirectory, "CZ.Blog.HttpApi.xml");
-                if (File.Exists(xmlapipath))
-                {
-                    options.IncludeXmlComments(xmlapipath, true);
-                }
-                var xmlapppath = Path.Combine(AppContext.BaseDirectory, "CZ.Blog.Application.Contracts.xml");
-                if (File.Exists(xmlapipath))
-                {
-                    options.IncludeXmlComments(xmlapppath,true);
-                }
-               
-            });
+
         }
-        
+
         public override void OnApplicationInitialization(
             ApplicationInitializationContext context)
         {
@@ -83,15 +58,12 @@ namespace CZ.Blog.API
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseAuthorization();
             app.UseAuditing();
             app.UseConfiguredEndpoints();
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blog API V1");
-                c.RoutePrefix = "";
-            });
+
         }
+
     }
 }

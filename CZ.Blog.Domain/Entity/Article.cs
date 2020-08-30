@@ -8,6 +8,9 @@ using Volo.Abp.Domain.Entities.Auditing;
 
 namespace CZ.Blog.Domain.Entity
 {
+    /// <summary>
+    /// 文章
+    /// </summary>
     [Audited]
     public class Article : Entity<int>
     {

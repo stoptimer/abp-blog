@@ -5,8 +5,14 @@ using System.Text;
 
 namespace CZ.Blog.Application.Contracts
 {
+    /// <summary>
+    /// 文章DTO
+    /// </summary>
     public class ArticleDto
     {
+        /// <summary>
+        /// 文章ID
+        /// </summary>
         public int Id { get; set; }
         /// <summary>
         /// 标题

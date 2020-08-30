@@ -4,6 +4,10 @@ using System.Text;
 
 namespace CZ.Blog.HttpApi.Models
 {
+    /// <summary>
+    /// 分页通用实体
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class PageData<T>
     {
         /// <summary>
