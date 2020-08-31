@@ -32,9 +32,12 @@ namespace CZ.Blog.Ids4.Server
                 options.ApplicationName = "IdentityService";
             });
             context.Services.AddIdentityServer()
-                       .AddDeveloperSigningCredential()
-                        .AddInMemoryApiScopes(Config.ApiScopes)
-                        .AddInMemoryClients(Config.Clients);
+                .AddDeveloperSigningCredential()
+                .AddInMemoryIdentityResources(Config.GetIdentityResourceResources())
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients())
+                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+                .AddProfileService<ProfileService>();
 
 
 

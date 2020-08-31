@@ -11,31 +11,58 @@ namespace CZ.Blog.Ids4.Server
 {
     public class Config
     {
-        public static IEnumerable<ApiScope> ApiScopes =>
-        new List<ApiScope>
+        public static IEnumerable<IdentityResource> GetIdentityResourceResources()
         {
-            new ApiScope("api1", "My API")
-        };
-        public static IEnumerable<Client> Clients =>
-         new List<Client>
-         {
-            new Client
+            return new List<IdentityResource>
             {
-                ClientId = "client",
+                new IdentityResources.OpenId(), //必须要添加，否则报无效的scope错误
+                new IdentityResources.Profile()
+            };
+        }
+        // scopes define the API resources in your system
+        public static IEnumerable<ApiResource> GetApiResources()
+        {
+            return new List<ApiResource>
+            {
+                new ApiResource("api1", "My API")
+            };
+        }
 
-                // no interactive user, use the clientid/secret for authentication
-                AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-
-                // secret for authentication
-                ClientSecrets =
+        // clients want to access resources (aka scopes)
+        public static IEnumerable<Client> GetClients()
+        {
+            // client credentials client
+            return new List<Client>
+            {
+                new Client
                 {
-                    new Secret("secret".Sha256())
+                    ClientId = "client1",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = { "api1",IdentityServerConstants.StandardScopes.OpenId, //必须要添加，否则报forbidden错误
+                  IdentityServerConstants.StandardScopes.Profile},
+
                 },
 
-                // scopes that client has access to
-                AllowedScopes = { "api1" }
-            }
-         };
+                // resource owner password grant client
+                new Client
+                {
+                    ClientId = "client2",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = { "api1",IdentityServerConstants.StandardScopes.OpenId, //必须要添加，否则报forbidden错误
+                  IdentityServerConstants.StandardScopes.Profile }
+                }
+            };
+        }
 
     }
 }

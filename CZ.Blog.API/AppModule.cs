@@ -38,15 +38,14 @@ namespace CZ.Blog.API
                 options.ApplicationName = "BlogAPI";
             });
             context.Services.AddAuthentication("Bearer")
-            .AddJwtBearer("Bearer", options =>
-            {
-                options.Authority = "http://localhost:5000";
-
-                options.TokenValidationParameters = new TokenValidationParameters
+                .AddIdentityServerAuthentication(options =>
                 {
-                    ValidateAudience = false
-                };
-            });
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+
+                    options.ApiName = "api1";
+                });
+
             context.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog API", Version = "v1" });
@@ -81,10 +80,11 @@ namespace CZ.Blog.API
             }
 
             app.UseStaticFiles();
+            
             app.UseRouting();
+            app.UseAuditing();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseAuditing();
             app.UseConfiguredEndpoints();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

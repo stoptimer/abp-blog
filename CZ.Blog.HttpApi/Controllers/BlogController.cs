@@ -1,6 +1,7 @@
 ﻿using CZ.Blog.Application.Contracts;
 using CZ.Blog.Application.IServices;
 using CZ.Blog.HttpApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,9 @@ namespace CZ.Blog.HttpApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ResponseResult<ArticleDto>> GetArticle(int id)
         {
             try
