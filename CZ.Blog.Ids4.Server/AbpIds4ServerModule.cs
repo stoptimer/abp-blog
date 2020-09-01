@@ -36,8 +36,10 @@ namespace CZ.Blog.Ids4.Server
                 .AddInMemoryIdentityResources(Config.GetIdentityResourceResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
-                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
-                .AddProfileService<ProfileService>();
+                .AddInMemoryApiScopes(Config.ApiScopes);
+                
+                //.AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+                //.AddProfileService<ProfileService>();
 
 
 

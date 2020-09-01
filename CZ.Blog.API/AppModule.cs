@@ -26,7 +26,7 @@ namespace CZ.Blog.API
         )]
     public class AppModule : AbpModule
     {
-        
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
@@ -37,14 +37,13 @@ namespace CZ.Blog.API
                 options.EntityHistorySelectors.AddAllEntities();
                 options.ApplicationName = "BlogAPI";
             });
-            context.Services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = "http://localhost:5000";
-                    options.RequireHttpsMetadata = false;
-
-                    options.ApiName = "api1";
-                });
+            context.Services.AddAuthentication("Bearer")//添加授权模式
+            .AddIdentityServerAuthentication(Options =>
+            {
+                Options.Authority = "http://localhost:5000";//授权服务器地址
+                Options.RequireHttpsMetadata = false;//是否是https
+                Options.ApiName = "api1";
+            });
 
             context.Services.AddSwaggerGen(options =>
             {
@@ -58,12 +57,12 @@ namespace CZ.Blog.API
                 var xmlapppath = Path.Combine(AppContext.BaseDirectory, "CZ.Blog.Application.Contracts.xml");
                 if (File.Exists(xmlapipath))
                 {
-                    options.IncludeXmlComments(xmlapppath,true);
+                    options.IncludeXmlComments(xmlapppath, true);
                 }
-               
+
             });
         }
-        
+
         public override void OnApplicationInitialization(
             ApplicationInitializationContext context)
         {
@@ -80,7 +79,7 @@ namespace CZ.Blog.API
             }
 
             app.UseStaticFiles();
-            
+
             app.UseRouting();
             app.UseAuditing();
             app.UseAuthentication();
