@@ -24,11 +24,11 @@ namespace CZ.Blog.Ids4.Server
         {
             return new List<ApiResource>
             {
-                new ApiResource("api1", "My API"){
+                new ApiResource("blogapi", "My API"){
                     Scopes =
                     {
-                        "api1"
-                       
+                        "blogapi"
+
                     }
                 }
             };
@@ -36,7 +36,7 @@ namespace CZ.Blog.Ids4.Server
         public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
-            new ApiScope("api1"),
+            new ApiScope("blogapi"),
             //new ApiScope("scope2"),
         };
         // clients want to access resources (aka scopes)
@@ -54,7 +54,7 @@ namespace CZ.Blog.Ids4.Server
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "api1",IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile},
+                    AllowedScopes = { "blogapi", IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile},
 
                 },
 
@@ -68,7 +68,7 @@ namespace CZ.Blog.Ids4.Server
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "api1", IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile }
+                    AllowedScopes = { "blogapi", IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.Profile }
                 }
             };
         }

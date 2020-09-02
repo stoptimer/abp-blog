@@ -42,7 +42,7 @@ namespace CZ.Blog.API
             {
                 Options.Authority = "http://localhost:5000";//授权服务器地址
                 Options.RequireHttpsMetadata = false;//是否是https
-                Options.ApiName = "api1";
+                Options.ApiName = "blogapi";
             });
 
             context.Services.AddSwaggerGen(options =>

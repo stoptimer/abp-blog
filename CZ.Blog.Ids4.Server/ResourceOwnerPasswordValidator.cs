@@ -43,7 +43,7 @@ namespace CZ.Blog.Ids4.Server
             new Claim(JwtClaimTypes.GivenName, "jaycewu"),
             new Claim(JwtClaimTypes.FamilyName, "yyy"),
             new Claim(JwtClaimTypes.Email, "977865769@qq.com"),
-            new Claim(JwtClaimTypes.Role,"admin")
+            new Claim(JwtClaimTypes.Role,"user")
             };
         }
     }

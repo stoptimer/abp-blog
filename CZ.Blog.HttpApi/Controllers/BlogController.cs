@@ -18,6 +18,7 @@ namespace CZ.Blog.HttpApi.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class BlogController : AbpController
     {
         private readonly IBlogService _blogService;
@@ -36,7 +37,7 @@ namespace CZ.Blog.HttpApi.Controllers
         /// <returns></returns>
         
         [HttpGet("{id}")]
-        [Authorize]
+        
         public async Task<ResponseResult<ArticleDto>> GetArticle(int id)
         {
             try

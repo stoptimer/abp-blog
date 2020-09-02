@@ -49,6 +49,33 @@
             HttpApiModule
             </summary>
         </member>
+        <member name="T:CZ.Blog.HttpApi.Middleware.AuthorizationFilter">
+            <summary>
+            权限过滤器
+            </summary>
+        </member>
+        <member name="M:CZ.Blog.HttpApi.Middleware.AuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            权限方法
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:CZ.Blog.HttpApi.Middleware.CustomizeAuthorizeAttribute">
+            <summary>
+            自定义权限属性
+            </summary>
+        </member>
+        <member name="P:CZ.Blog.HttpApi.Middleware.CustomizeAuthorizeAttribute.Permission">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="M:CZ.Blog.HttpApi.Middleware.CustomizeAuthorizeAttribute.#ctor(System.String)">
+            <summary>
+            构造器
+            </summary>
+            <param name="permission"></param>
+        </member>
         <member name="T:CZ.Blog.HttpApi.Models.PageData`1">
             <summary>
             分页通用实体

@@ -17,10 +17,4 @@
     <ProjectReference Include="..\CZ.Blog.Application\CZ.Blog.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="CZ.Blog.HttpApi.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
