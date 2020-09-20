@@ -18,7 +18,7 @@ namespace CZ.Blog.HttpApi.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    
     public class BlogController : AbpController
     {
         private readonly IBlogService _blogService;
@@ -35,9 +35,9 @@ namespace CZ.Blog.HttpApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        
+
         [HttpGet("{id}")]
-        
+        [Authorize(Roles = "master")]
         public async Task<ResponseResult<ArticleDto>> GetArticle(int id)
         {
             try
@@ -60,6 +60,7 @@ namespace CZ.Blog.HttpApi.Controllers
         /// <param name="size"></param>
         /// <returns></returns>
         [HttpGet("{index}/{size}")]
+        [Authorize(Roles = "master")]
         public async Task<ResponseResult<PageData<List<ArticleDto>>>> GetArticles(int index, int size)
         {
             PageData<List<ArticleDto>> pageData = new PageData<List<ArticleDto>>();
@@ -77,6 +78,7 @@ namespace CZ.Blog.HttpApi.Controllers
         /// <param name="request">请求实体</param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = "master")]
         public async Task<ResponseResult> SaveArticle(ArticleRequest request)
         {
             try
@@ -97,6 +99,7 @@ namespace CZ.Blog.HttpApi.Controllers
         /// <param name="request">请求实体</param>
         /// <returns></returns>
         [HttpPost("update")]
+        [Authorize(Roles = "master")]
         public async Task<ResponseResult> UpdateArticle(ArticleRequest request)
         {
             await _blogService.UpdateArticleAsync(request.Id, request);

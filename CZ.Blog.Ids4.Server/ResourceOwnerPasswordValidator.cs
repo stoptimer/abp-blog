@@ -19,7 +19,7 @@ namespace CZ.Blog.Ids4.Server
         public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
             //根据context.UserName和context.Password与数据库的数据做校验，判断是否合法
-            if (context.UserName == "wjk" && context.Password == "123")
+            if (context.UserName == "xyc309" && context.Password.Equals("Cz.1985314"))
             {
                 context.Result = new GrantValidationResult(
                  subject: context.UserName,
@@ -39,11 +39,11 @@ namespace CZ.Blog.Ids4.Server
             return new Claim[]
             {
             new Claim("UserId", 1.ToString()),
-            new Claim(JwtClaimTypes.Name,"wjk"),
-            new Claim(JwtClaimTypes.GivenName, "jaycewu"),
-            new Claim(JwtClaimTypes.FamilyName, "yyy"),
-            new Claim(JwtClaimTypes.Email, "977865769@qq.com"),
-            new Claim(JwtClaimTypes.Role,"user")
+            new Claim(JwtClaimTypes.Name,"xyc309"),
+            new Claim(JwtClaimTypes.GivenName, ""),
+            new Claim(JwtClaimTypes.FamilyName, ""),
+            new Claim(JwtClaimTypes.Email, ""),
+            new Claim(JwtClaimTypes.Role,"master")
             };
         }
     }
