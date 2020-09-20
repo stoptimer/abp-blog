@@ -40,7 +40,7 @@ namespace CZ.Blog.API
             context.Services.AddAuthentication("Bearer")//添加授权模式
             .AddIdentityServerAuthentication(Options =>
             {
-                Options.Authority = "http://localhost:5000";//授权服务器地址
+                Options.Authority = configuration.GetSection("Ids4Config")["IssuerUri"];//授权服务器地址
                 Options.RequireHttpsMetadata = false;//是否是https
                 Options.ApiName = "blogapi";
             });
