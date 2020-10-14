@@ -60,8 +60,26 @@ namespace CZ.Blog.HttpApi.Controllers
         /// <param name="size"></param>
         /// <returns></returns>
         [HttpGet("{index}/{size}")]
-        [Authorize(Roles = "master")]
         public async Task<ResponseResult<PageData<List<ArticleDto>>>> GetArticles(int index, int size)
+        {
+            PageData<List<ArticleDto>> pageData = new PageData<List<ArticleDto>>();
+            var articles = await _blogService.GetArticles(index, size);
+            pageData.PageNo = index;
+            pageData.PageSize = size;
+            pageData.TotalCount = articles.Total;
+            pageData.List = articles.ArticleDtos;
+            return new ResponseResult<PageData<List<ArticleDto>>>(pageData);
+
+        }
+        /// <summary>
+        /// 获取文章列表
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        [HttpGet("admin/{index}/{size}")]
+        [Authorize(Roles = "master")]
+        public async Task<ResponseResult<PageData<List<ArticleDto>>>> GetArticlesByAdmin(int index, int size)
         {
             PageData<List<ArticleDto>> pageData = new PageData<List<ArticleDto>>();
             var articles = await _blogService.GetArticles(index, size);
